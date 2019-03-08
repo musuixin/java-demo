@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta http-equiv="content-type" content="text/html" charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录</title>
+    <link href="/SignIn_Register_war_exploded/dl.css" rel="stylesheet">
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script>
+        function yz() {
+            var mess;
+            var name = $("input[name='uname']").val();
+            var pwd = $("input[name='upwd']").val();
+            $.ajax({
+                url: "Login",
+                type: "post",
+                async: false,
+                data: {uname: name, upwd: pwd},
+                success: function (data) {
+                    mess = data;
+                }
+            });
+            if (mess == "成功") {
+                return true;
+            }
+            alert("用户名或密码错误");
+            return false;
+
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto ">
+            <div class="card card-signin my-5">
+                <div class="card-body">
+                    <h5 class="card-title text-center">登陆</h5>
+                    <form class="form-signin" action="success/success.html" method="post" onsubmit="return yz()">
+                        <div class="form-label-group">
+                            <input type="" id="inputEmail" class="form-control" placeholder="Email address" name="uname"
+                                   required autofocus>
+                            <label for="inputEmail">用户名</label>
+                        </div>
+
+                        <div class="form-label-group">
+                            <input type="password" id="inputPassword" class="form-control" placeholder="Password"
+                                   name="upwd"
+                                   required>
+                            <label for="inputPassword">密码</label>
+                        </div>
+
+                        <div class="custom-control custom-checkbox mb-3">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1">Remember password</label>
+                        </div>
+                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">登陆</button>
+                        <hr>
+                        <a href="/SignIn_Register_war_exploded/Register.html" class="btn btn-block btn-danger ">注册</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

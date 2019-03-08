@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>意见征集系统</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.get({
+                url: "/fatie_war_exploded/getData",
+                //将JSON转化为字符串传递
+                //成功后的方法
+                success: function (result) {
+                    for (var i = result.length - 1; i >= 0; i--) {
+                        $("#text").append("<div class=\"bg-primary text-white container  my-3\">" +
+                            "<p>昵称：" + result[i].uname + "</p>" +
+                            "<p>建议：" + result[i].text + "</p>" +
+                            "<p>时间：" + result[i].time + "</p>" +
+                            "</div>");
+                    }
+                }
+            });
+            $("#tijiao").click((function () {
+                if ($('input[name="uname"]').val() == "" || $('textarea[name="text"]').val() == "") {
+                    alert("不允许昵称或建议为空");
+                    return 0;
+                }
+                // var shuju={'shuju': $('#jianyi').val()};
+                $.post({
+                    url: "/fatie_war_exploded/tijiao",
+                    data: {'uname': $('input[name="uname"]').val(), 'text': $('textarea[name="text"]').val()},
+                    // contentType: "application/json",
+                    dataType: "text",
+                    success: function () {
+                        alert("建议提交成功");
+                        location.reload();
+                    }
+                });
+            }))
+        });
+    </script>
+</head>
+<body>
+<h1 class="text-center">输入你的建议</h1>
+<div class="container mt-2 my-3">
+    <form role="form">
+        <div class="form-label-group">
+            <input type="text" class="form-control" placeholder="您的昵称" required
+                   name="uname"
+                   autofocus>
+        </div>
+        <div class="form-label-group my-3">
+            <textarea class="form-control" rows="3" name="text" placeholder="您的建议" required></textarea>
+        </div>
+        <div style="text-align: center;">
+            <button class="btn" id="tijiao" type="button">提交</button>
+        </div>
+    </form>
+</div>
+<h1 class="text-center">建议征集列表</h1>
+<div class="container mt-2 my-3" id="text">
+
+</div>
+
+
+</body>
+</html>
