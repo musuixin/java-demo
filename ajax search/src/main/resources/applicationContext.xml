@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!--开启注解-->
+    <context:annotation-config/>
+    <!--<context:component-scan base-package="top"/>-->
+    <!--编程式即采用注解的方式,事务扫描开始(开启注解@Tranctional) -->
+    <tx:annotation-driven/>
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+    <!--dataSource-->
+    <context:property-placeholder location="classpath:druid.properties" system-properties-mode="NEVER"/>
+    <!--<bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="transactionManager">-->
+        <!--<property name="dataSource" ref="dataSource"/>-->
+    <!--</bean>-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${sql.driverClassName}"/>
+        <property name="username" value="${sql.username}"/>
+        <property name="password" value="${sql.password}"/>
+        <property name="url" value="${sql.url}"/>
+        <property name="initialSize" value="${sql.initialSize}"/>
+    </bean>
+    <!--mybatis-->
+    <bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+    </bean>
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="top.musuixin.Mapper"/>
+    </bean>
+</beans>
