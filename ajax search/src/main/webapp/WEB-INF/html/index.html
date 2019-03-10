@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>jQuery UI 自动完成（Autocomplete） - 默认功能</title>
+    <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+    <script>
+        $(function () {
+            $('#tags').keyup(function () {
+                $.get({
+                    url: "/info/",
+                    success: function (result) {
+                        let parse = JSON.parse(result);
+                        availableTags = parse;
+                        alert(availableTags);
+                        $("#tags").autocomplete({
+                            source: availableTags
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body style="background-color:#ffe8a1">
+
+<div style="padding: 100px 100px 10px;" class="text-center">
+    <h4>ajax模糊搜索</h4>
+    <form>
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="tags">
+                    <span class="input-group-btn">
+						<button class="btn" type="button">搜索</button>
+					</span>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

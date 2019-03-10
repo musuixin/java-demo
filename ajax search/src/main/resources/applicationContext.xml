@@ -36,6 +36,6 @@
         <property name="configLocation" value="classpath:mybatis-config.xml"/>
     </bean>
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="top.musuixin.Mapper"/>
+        <!--<property name="basePackage" value="top.musuixin.Mapper"/>-->
     </bean>
 </beans>
