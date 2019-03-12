@@ -1,4 +1,4 @@
-package top.musuixin.Controller;
+package top.musuixin;
 
 
 import top.musuixin.PoJo.ShuJuPOJO;

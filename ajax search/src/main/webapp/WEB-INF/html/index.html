@@ -6,23 +6,25 @@
     <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.css">
+    <link rel="stylesheet" href="httpjs/s://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.css">
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="/ajax_search_war_exploded/js/jrender.js"></script>
     <script>
         $(function () {
-            $('#tags').keyup(function () {
+
+            $("#tags").autocomplete({
+                source: '/ajax_search_war_exploded/json/info/'
+            });
+            $("#search").click(function () {
                 $.get({
-                    url: "/info/",
-                    success: function (result) {
-                        let parse = JSON.parse(result);
-                        availableTags = parse;
-                        alert(availableTags);
-                        $("#tags").autocomplete({
-                            source: availableTags
-                        });
+                    url: '/ajax_search_war_exploded/json/search/',
+                    data: {"search": $("#tags").val()},
+                    dataType: "json",
+                    success: function (data) {
+                        $(".info").renderValues(data);
                     }
                 });
-            });
+            })
         });
     </script>
 </head>
@@ -36,12 +38,25 @@
                 <div class="input-group">
                     <input type="text" class="form-control" id="tags">
                     <span class="input-group-btn">
-						<button class="btn" type="button">搜索</button>
+						<button class="btn" type="button" id="search">搜索</button>
 					</span>
                 </div>
             </div>
         </div>
     </form>
+</div>
+<div class="info text-center">
+    <div render-loop="info">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <span render-html="info.name"></span>
+                <span render-html="info.id"></span>
+                <span render-html="info.ducation"></span>
+                <span render-html="info.skill"></span>
+                <span render-html="info.idealPost"></span>
+            </li>
+        </ul>
+    </div>
 </div>
 </body>
 </html>

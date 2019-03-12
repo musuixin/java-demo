@@ -7,7 +7,7 @@
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
-    <mvc:view-controller path="/" view-name="redirect:/fatie" />
+    <mvc:view-controller path="/" view-name="redirect:/html/index" />
     <!-- 使用注解驱动 -->
     <mvc:annotation-driven/>
     <!--让spring mvc容器可以解析静态资源-->

@@ -1,16 +1,17 @@
-package top.musuixin;
+package top.musuixin.Controller;
 
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.LinkedList;
+
 @Controller
-@RequestMapping("/json")
-public class json {
-    @RequestMapping("/info")
-    @ResponseBody
-    public String info() {
-        return "xxx";
+@RequestMapping("/html")
+public class html {
+    @RequestMapping("/index")
+    public String index() {
+        return "index";
     }
 }

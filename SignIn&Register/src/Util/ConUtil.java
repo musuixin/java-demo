@@ -18,7 +18,7 @@ public class ConUtil {
     private static String  myDriverUrl = "com.mysql.cj.jdbc.Driver";
     private static String murl = "jdbc:mysql://localhost/demo?useSSL=FALSE&serverTimezone=UTC";
     private static String mName = "root";
-    private static String mPwd = "******";
+    private static String mPwd = "950405";
 
     public static Connection openConection(){
         Connection	 connection = null;

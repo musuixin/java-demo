@@ -19,7 +19,7 @@
             var name = $("input[name='uname']").val();
             var pwd = $("input[name='upwd']").val();
             $.ajax({
-                url: "Login",
+                url: "/SignIn_Register_war_exploded/Login",
                 type: "post",
                 async: false,
                 data: {uname: name, upwd: pwd},
@@ -32,7 +32,6 @@
             }
             alert("用户名或密码错误");
             return false;
-
         }
     </script>
 </head>
@@ -43,7 +42,7 @@
             <div class="card card-signin my-5">
                 <div class="card-body">
                     <h5 class="card-title text-center">登陆</h5>
-                    <form class="form-signin" action="success/success.html" method="post" onsubmit="return yz()">
+                    <form class="form-signin" action="/SignIn_Register_war_exploded/success/success.html" method="post" onsubmit="return yz()">
                         <div class="form-label-group">
                             <input type="" id="inputEmail" class="form-control" placeholder="Email address" name="uname"
                                    required autofocus>
