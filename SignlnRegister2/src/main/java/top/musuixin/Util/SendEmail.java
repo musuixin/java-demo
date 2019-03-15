@@ -1,13 +1,12 @@
 package top.musuixin.Util;
 
-import java.util.Properties;
-
 import javax.mail.Message;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMessage.RecipientType;
+import java.util.Properties;
 
 
 class SendmailUtil extends Thread {
@@ -50,6 +49,7 @@ class SendmailUtil extends Thread {
         }
     }
 }
+
 public class SendEmail {
     public static void main(String[] args) {
         SendmailUtil sendmailUtil = new SendmailUtil();
