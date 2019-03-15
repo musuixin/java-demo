@@ -23,21 +23,25 @@ public class PagJson {
 
     @ResponseBody
     @RequestMapping("/getInfo")
-    public List<InfoPolo> getInfo(@RequestParam(value = "num") int num) {
+    public HashMap<String, Object> getInfo(@RequestParam(value = "num") int num) {
         System.out.println(num);
         PageHelper.startPage(num, 10);
+        HashMap<String, Object> hashMap = new HashMap<>();
+
         List<InfoPolo> infoPolos = infoDao.selectInfo();
         PageInfo pageInfo = new PageInfo(infoPolos);
+        hashMap.put("info", infoPolos);
         System.out.println(pageInfo.getPages());
-        return infoPolos;
+        return hashMap;
     }
+
     @ResponseBody
     @RequestMapping("/getPage")
-    public HashMap<String,Integer> getPage() {
+    public HashMap<String, Integer> getPage() {
         PageHelper.startPage(1, 10);
         List<InfoPolo> infoPolos = infoDao.selectInfo();
         PageInfo pageInfo = new PageInfo(infoPolos);
-        HashMap<String,Integer> map=new HashMap<>();
+        HashMap<String, Integer> map = new HashMap<>();
         map.put("totalPages", pageInfo.getPages());
         return map;
     }

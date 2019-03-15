@@ -11,6 +11,7 @@
           href="http://cdn.staticfile.org/twitter-bootstrap/3.1.1/css/bootstrap.min.css"/>
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
     <script src="/paging_war_exploded/js/jq-paginator.js"></script>
+    <script src="/paging_war_exploded/js/jrender.js"></script>
     <script>
         $(function () {
             var totalPages;
@@ -25,7 +26,8 @@
                             $.get({
                                 url: "/paging_war_exploded/PagJson/getInfo",
                                 data: {"num": num},
-                                success:function (data) {
+                                success: function (data) {
+                                    $(".info").renderValues(data);
 
                                 }
                             });
@@ -38,9 +40,23 @@
 </head>
 
 <body>
+
 <p id="text"></p>
 <div style="text-align: center;">
     <ul class="pagination" id="pagination1"></ul>
+</div>
+<div class="info text-center">
+    <div render-loop="info">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <span render-html="info.name"></span>
+                <span render-html="info.id"></span>
+                <span render-html="info.ducation"></span>
+                <span render-html="info.skill"></span>
+                <span render-html="info.idealPost"></span>
+            </li>
+        </ul>
+    </div>
 </div>
 </body>
 
