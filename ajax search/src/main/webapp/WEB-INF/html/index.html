@@ -7,10 +7,9 @@
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
-    <script src="/ajax_search_war_exploded/js/jrender.js"></script>
+    <script src="https://cdn.bootcss.com/handlebars.js/4.0.0/handlebars.js"></script>
     <script>
         $(function () {
-
             $("#tags").autocomplete({
                 source: '/ajax_search_war_exploded/json/info/'
             });
@@ -20,12 +19,19 @@
                     data: {"search": $("#tags").val()},
                     dataType: "json",
                     success: function (data) {
-                        $(".info").renderValues(data);
+                        var theTemplateScript = $("#address-template").html();
+                        // 编译模板
+                        var theTemplate = Handlebars.compile(theTemplateScript);
+                        // 把数据传送到模板
+                        var theCompiledHtml = theTemplate(data);
+                        // 更新到模板
+                        $('.content-placeholder').html(theCompiledHtml);
                     }
                 });
             })
         });
     </script>
+
 </head>
 <body style="background-color:#ffe8a1">
 
@@ -44,18 +50,29 @@
         </div>
     </form>
 </div>
-<div class="info text-center">
-    <div render-loop="info">
-        <ul class="list-group">
-            <li class="list-group-item">
-                <span render-html="info.name"></span>
-                <span render-html="info.id"></span>
-                <span render-html="info.ducation"></span>
-                <span render-html="info.skill"></span>
-                <span render-html="info.idealPost"></span>
-            </li>
-        </ul>
-    </div>
-</div>
+<script id="address-template" type="text/x-handlebars-template">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>名字</th>
+            <th>教育程度</th>
+            <th>具体资料</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each info}}
+        <tr>
+            <td>{{id}}</td>
+            <td>{{name}}</td>
+            <td>{{education}}</td>
+            <td><a href=http://www.musuixin.top:8080/ajax_search_war_exploded/html/text/{{id}}>详细信息</a></td>
+        </tr>
+        {{/each}}
+        </tbody>
+</script>
+<!--新的内容在这里展示-->
+<div class="content-placeholder container"></div>
+
 </body>
 </html>

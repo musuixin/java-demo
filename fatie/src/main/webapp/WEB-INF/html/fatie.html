@@ -8,20 +8,35 @@
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script src="/fatie_war_exploded/JS/jq-paginator.js"></script>
+
     <script>
         $(document).ready(function () {
+            var totalPages;
             $.get({
-                url: "/fatie_war_exploded/getData",
-                //将JSON转化为字符串传递
-                //成功后的方法
-                success: function (result) {
-                    for (var i = result.length - 1; i >= 0; i--) {
-                        $("#text").append("<div class=\"bg-primary text-white container  my-3\">" +
-                            "<p>昵称：" + result[i].uname + "</p>" +
-                            "<p>建议：" + result[i].text + "</p>" +
-                            "<p>时间：" + result[i].time + "</p>" +
-                            "</div>");
-                    }
+                url: "/fatie_war_exploded/getPage",
+                success: function (data) {
+                    totalPages = data["totalPages"];
+                    $('#pagination1').jqPaginator({
+                        totalPages: totalPages,
+                        currentPage: 1,
+                        onPageChange: function (num, type) {
+                            $.get({
+                                url: "/fatie_war_exploded/getData",
+                                data: {"num": num},
+                                success: function (result) {
+                                    $("#text").empty();
+                                    for (var i = result.length - 1; i >= 0; i--) {
+                                        $("#text").append("<div class=\"bg-primary text-white container  my-3\">" +
+                                            "<p>昵称：" + result[i].uname + "</p>" +
+                                            "<p>建议：" + result[i].text + "</p>" +
+                                            "<p>时间：" + result[i].time + "</p>" +
+                                            "</div>");
+                                    }
+                                }
+                            });
+                        }
+                    });
                 }
             });
             $("#tijiao").click((function () {
@@ -65,7 +80,9 @@
 <div class="container mt-2 my-3" id="text">
 
 </div>
-
+<div class="container .col-md-4 ">
+    <ul class="pagination" id="pagination1"></ul>
+</div>
 
 </body>
 </html>

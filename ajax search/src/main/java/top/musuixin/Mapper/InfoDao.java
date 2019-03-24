@@ -13,4 +13,7 @@ import java.util.LinkedList;
 public interface InfoDao {
     @Select("select * from info where NAME like #{search} ")
     LinkedList<InfoPolo> selectInfo(String search);
+
+    @Select("select * from info where ID=#{id}   ")
+    LinkedList<InfoPolo> selectId(int id);
 }

@@ -1,6 +1,8 @@
 package top.musuixin;
 
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import top.musuixin.PoJo.ShuJuPOJO;
 import top.musuixin.Mapper.FaTieMapper;
 import top.musuixin.Service.InsterData;
@@ -10,7 +12,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 
 @Controller
 public class FaTieController {
@@ -39,9 +43,20 @@ public class FaTieController {
 
     @ResponseBody
     @GetMapping("/getData")
-    public LinkedList<ShuJuPOJO> getData() {
-        LinkedList<ShuJuPOJO> data = faTieMapper.getData();
+    public  List<ShuJuPOJO> getData(int num) {
+        PageHelper.startPage(num, 10);
+        List<ShuJuPOJO> data = faTieMapper.getData();
         System.out.println(data);
         return data;
+    }
+    @ResponseBody
+    @RequestMapping("/getPage")
+    public HashMap<String, Integer> getPage() {
+        PageHelper.startPage(1, 10);
+        List<ShuJuPOJO> infoPolos = faTieMapper.getData();
+        PageInfo pageInfo = new PageInfo(infoPolos);
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("totalPages", pageInfo.getPages());
+        return map;
     }
 }

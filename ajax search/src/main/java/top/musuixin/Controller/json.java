@@ -29,7 +29,6 @@ public class json {
         LinkedList<name> names = nameDao.SelectName(name);
         return names;
     }
-
     @RequestMapping("/search")
     @ResponseBody
     public HashMap<String,Object> search(@RequestParam("search") String search) {
@@ -40,4 +39,15 @@ public class json {
         System.out.println(map);
         return map;
     }
+    @RequestMapping("/searchid")
+    @ResponseBody
+    public HashMap<String,Object>  searchId(@RequestParam("id") int id) {
+        System.out.println(id);
+        LinkedList<InfoPolo> infoPolos = infoDao.selectId(id);
+        HashMap<String,Object> map=new HashMap<>();
+        map.put("info",infoPolos);
+        return map;
+    }
+
+
 }

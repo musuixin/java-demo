@@ -1,5 +1,7 @@
 package top.musuixin.Util;
 
+import org.apache.log4j.Logger;
+
 import javax.mail.Message;
 import javax.mail.Session;
 import javax.mail.Transport;
@@ -8,12 +10,21 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMessage.RecipientType;
 import java.util.Properties;
 
+/**
+ * @date 3.27
+ *
+ * 发送邮箱逻辑
+ */
 
-class SendmailUtil extends Thread {
-    String Toemail;
 
-    public void setToemail(String toemail) {
-        Toemail = toemail;
+
+public class SendmailUtil extends Thread {
+    String toEmail;
+    int code;
+
+    public void setToemailECode(String toEmail, int code) {
+        this.toEmail = toEmail;
+        this.code = code;
     }
 
     @Override
@@ -33,11 +44,11 @@ class SendmailUtil extends Thread {
         try {
             message.setFrom(new InternetAddress("1804125652@qq.com"));
             // 设置收件人地址
-            message.setRecipients(RecipientType.TO, new InternetAddress[]{new InternetAddress(Toemail)});
+            message.setRecipients(RecipientType.TO, new InternetAddress[]{new InternetAddress(toEmail)});
             // 设置邮件标题
-            message.setSubject("由JavaMail发出的测试邮件");
+            message.setSubject("慕随心系统验证码！");
             // 设置邮件内容
-            message.setText("内容为： 这是第一封java发送来的邮件。");
+            message.setText("欢迎您注册慕随心java项目系统！您的验证码为：" + code + "\n温馨提醒：请随意输入注册密码，本网站不进行密码保护工作！");
             // 得到邮差对象
             Transport transport = session.getTransport();
             // 连接自己的邮箱账户
@@ -47,18 +58,5 @@ class SendmailUtil extends Thread {
         } catch (Exception e) {
             System.out.println(e);
         }
-    }
-}
-
-public class SendEmail {
-    public static void main(String[] args) {
-        SendmailUtil sendmailUtil = new SendmailUtil();
-        sendmailUtil.setToemail("fangdangyu@gmail.com");
-        sendmailUtil.start();
-        SendmailUtil sendmailUtil1 = new SendmailUtil();
-        sendmailUtil1.setToemail("1154430034@qq.com");
-        sendmailUtil1.start();
-        System.out.println("正在发送邮件");
-
     }
 }

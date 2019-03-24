@@ -9,11 +9,12 @@ import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
+import java.util.List;
 
 @Repository
 public interface FaTieMapper {
     @Select("select * from fatie")
-    LinkedList<ShuJuPOJO> getData();
+    List<ShuJuPOJO> getData();
     @Insert("insert into demo.fatie values (#{uname} ,#{text} ,#{time} )")
     void insterData(ShuJuPOJO shuJu);
 }

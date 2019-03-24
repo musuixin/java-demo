@@ -14,4 +14,8 @@ public class html {
     public String index() {
         return "index";
     }
+    @RequestMapping("/text/*")
+    public String text() {
+        return "text";
+    }
 }

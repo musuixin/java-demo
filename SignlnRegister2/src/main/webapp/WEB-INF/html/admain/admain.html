@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/handlebars.js/4.0.0/handlebars.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.get({
+                async:false,
+                url: "/SignlnRegister2_war_exploded/admain/getUserList",
+                success: function (data) {
+                    var theTemplateScript = $("#text").html();
+                    // 编译模板
+                    var theTemplate = Handlebars.compile(theTemplateScript)
+                    // 把数据传送到模板
+                    var theCompiledHtml = theTemplate(data);
+                    // 更新到模板
+                    $('#shuju').html(theCompiledHtml);
+
+                }
+            });
+            $("button[name='delete']").click(function () {
+                if (confirm("你确定提交吗？")) {
+                    var _this = $(this).parent().siblings();
+                    $.get({
+                        async:false,
+                        url: "/SignlnRegister2_war_exploded/admain/deleteUser",
+                        data:{id:_this.html()},
+                        success: function (data) {
+                            location.reload();
+                        }
+                    });
+                }
+                else {
+                    return;
+                }
+            });
+        });
+
+    </script>
+</head>
+<body>
+
+<div class="container" id="shuju">
+    <script id="text" type="text/x-handlebars-template">
+        <h2>欢迎管理员登陆</h2>
+        <p>在这里您只能删除你不喜欢的用户信息</p>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>用户名</th>
+                <th>Email</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each info}}
+            <tr>
+                <td>{{id}}</td>
+                <td>{{uname}}</td>
+                <td>{{email}}</td>
+                <td>
+                    <button class="btn" name="delete">删除</button>
+                </td>
+            </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </script>
+</div>
+</body>
+
+</html>
