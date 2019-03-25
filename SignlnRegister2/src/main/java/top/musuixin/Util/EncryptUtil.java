@@ -59,7 +59,7 @@ public class EncryptUtil {
      * md5或者sha-1加密
      *
      * @param inputText     要加密的内容
-     * @param algorithmName 加密算法名称：md5或者sha-1，不区分大小写
+     * @param algorithmName 加密算法名称：a-md5或者sh1，不区分大小写
      * @return
      */
     private static String encrypt(String inputText, String algorithmName) {
@@ -96,6 +96,16 @@ public class EncryptUtil {
             sb.append(Integer.toHexString((arr[i] & 0xFF) | 0x100).substring(1, 3));
         }
         return sb.toString();
+    }
+    public static String convertMD5(String inStr){
+
+        char[] a = inStr.toCharArray();
+        for (int i = 0; i < a.length; i++){
+            a[i] = (char) (a[i] ^ 't');
+        }
+        String s = new String(a);
+        return s;
+
     }
 
 }

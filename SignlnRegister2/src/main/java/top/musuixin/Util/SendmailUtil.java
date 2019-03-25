@@ -31,7 +31,7 @@ public class SendmailUtil extends Thread {
     public void run() {
         Properties properties = new Properties();
         properties.put("mail.transport.protocol", "smtp"); // 连接协议
-        properties.put("mail.smtp.host", "smtp.qq.com"); // 主机名
+        properties.put("mail.smtp.host", "smtp.musuixin.top"); // 主机名
         properties.put("mail.smtp.port", 465);  // 端口号
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.ssl.enable", "true");  // 设置是否使用ssl安全连接 ---一般都使用
@@ -42,7 +42,7 @@ public class SendmailUtil extends Thread {
         Message message = new MimeMessage(session);
         // 设置发件人邮箱地址
         try {
-            message.setFrom(new InternetAddress("1804125652@qq.com"));
+            message.setFrom(new InternetAddress("musuixin@musuixin.top"));
             // 设置收件人地址
             message.setRecipients(RecipientType.TO, new InternetAddress[]{new InternetAddress(toEmail)});
             // 设置邮件标题
@@ -52,7 +52,7 @@ public class SendmailUtil extends Thread {
             // 得到邮差对象
             Transport transport = session.getTransport();
             // 连接自己的邮箱账户
-            transport.connect("1804125652@qq.com", "lmtpxokrpufdcddj");// 密码为刚才得到的授权码
+            transport.connect("musuixin@musuixin.top", "******");// 密码为刚才得到的授权码
             // 发送邮件
             transport.sendMessage(message, message.getAllRecipients());
         } catch (Exception e) {

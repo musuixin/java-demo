@@ -72,11 +72,13 @@ $(document).ready(function () {
                     li.text("邮箱");
                     li.attr("class", "");
                     $("#注册").attr("disabled", false);
+                    $("#获取验证码").attr("disabled", false);
                 } else {
                     xx = data;
                     li.text("邮箱重复");
                     li.attr("class", "text-danger");
                     $("#注册").attr("disabled", true);
+                    $("#获取验证码").attr("disabled", true);
                 }
             }
         });
