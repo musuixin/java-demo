@@ -256,11 +256,11 @@ $.jqPaginator = function (el, options) {
 
 $.jqPaginator.defaultOptions = {
   wrapper: '',
-  first: '<li class="first"><a class="page-link" href="javascript:;">First</a></li>',
-  prev: '<li class="prev"><a class="page-link" href="javascript:;">Previous</a></li>',
-  next: '<li class="next"><a class="page-link" href="javascript:;">Next</a></li>',
-  last: '<li class="last"><a class="page-link" href="javascript:;">Last</a></li>',
-  page: '<li class="page"><a class="page-link" href="javascript:;">{{page}}</a></li>',
+  first: '<li class="page-item"><a class="page-link" href="javascript:;">First</a></li>',
+  prev: '<li class="page-item"><a class="page-link" href="javascript:;">Previous</a></li>',
+  next: '<li class="page-item"><a class="page-link" href="javascript:;">Next</a></li>',
+  last: '<li class="page-item"><a class="page-link" href="javascript:;">Last</a></li>',
+  page: '<li class="page-item"><a class="page-link" href="javascript:;">{{page}}</a></li>',
   totalPages: 0,
   totalCounts: 0,
   pageSize: 0,
