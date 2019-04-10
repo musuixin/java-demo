@@ -29,7 +29,7 @@ public class LandingRegistration {
     @ResponseBody
     @PostMapping("/LandingRegistration")
     String Landing(UserPoJo userPoJo, HttpSession httpSession){
-        if(!userPoJo.getRepwd().equals("19971031")){
+        if(!userPoJo.getRepwd().equals("*****")){
             return "fales";
         }
         userPoJo.setUpwd(EncryptUtil.md5AndSha(userPoJo.getUpwd()));
