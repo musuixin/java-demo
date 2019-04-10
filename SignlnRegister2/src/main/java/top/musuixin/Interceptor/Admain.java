@@ -7,9 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.awt.event.HierarchyBoundsListener;
 
 /**
- *
  * 管理员拦截器
- *
  *
  * @author musuixin
  */
@@ -18,7 +16,7 @@ public class Admain implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         Object user = request.getSession().getAttribute("root");
-        if(user==null){
+        if (user == null) {
             response.sendRedirect("/SignlnRegister2_war_exploded/SignIn");
             return false;
         }

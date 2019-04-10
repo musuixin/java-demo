@@ -22,17 +22,16 @@
                 url: "/SignlnRegister2_war_exploded/Login",
                 type: "post",
                 async: false,
-                data:$('form').serialize(),
+                data: $('form').serialize(),
                 success: function (data) {
                     mess = data;
                 }
             });
             if (mess == "success") {
-                window.location.href='/SignlnRegister2_war_exploded/success';
-            }
-            else if (mess == "rootsuccess") {
-                window.location.href='/SignlnRegister2_war_exploded/admain/index';
-            }else {
+                window.location.href = '/SignlnRegister2_war_exploded/success';
+            } else if (mess == "rootsuccess") {
+                window.location.href = '/SignlnRegister2_war_exploded/admain/index';
+            } else {
                 alert("用户名或密码错误");
             }
             return false;

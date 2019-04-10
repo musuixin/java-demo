@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/admain_war_exploded/assets/images/favicon.png">
+    <title>招聘信息页</title>
+    
+    <link href="/admain_war_exploded/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="/admain_war_exploded/css/style.css" rel="stylesheet">
+    
+    <link href="/admain_war_exploded/css/colors/red.css" id="theme" rel="stylesheet">
+</head>
+
+<body class="fix-header card-no-border">
+
+<!-- Preloader - style you can find in spinners.css -->
+
+<div class="preloader">
+    <svg class="circular" viewBox="25 25 50 50">
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+    </svg>
+</div>
+
+<!-- Main wrapper - style you can find in pages.scss -->
+
+<div id="main-wrapper">
+    
+    <!-- Topbar header - style you can find in pages.scss -->
+    
+    <header class="topbar">
+        <nav class="navbar top-navbar navbar-toggleable-sm navbar-light">
+            
+            
+            
+            <div class="navbar-header">
+                <a class="navbar-brand" href="admaininfo.html">
+                    
+                    <b>
+                        <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                        
+                        <img src="/admain_war_exploded/assets/images/logo-icon.png" alt="homepage" class="dark-logo"/>
+
+                    </b>
+                    
+                    
+                    <span>
+                            
+                            <img src="/admain_war_exploded/assets/images/logo-text.JPG" alt="homepage" class="dark-logo"/>
+                        </span>
+                </a>
+            </div>
+            
+            
+            
+            <div class="navbar-collapse">
+                
+                
+                
+                <ul class="navbar-nav mr-auto mt-md-0 ">
+                    
+                    <li class="nav-item"><a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark"
+                                            href="javascript:void(0)"><i class="ti-menu"></i></a></li>
+                    <li class="nav-item hidden-sm-down">
+                        <form class="app-search p-l-20">
+                            <input type="text" class="form-control" placeholder="搜索功能制作中"> <a class="srh-btn"><i
+                                class="ti-search"></i></a>
+                        </form>
+                    </li>
+                </ul>
+                
+                
+                
+                <ul class="navbar-nav my-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href=""
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
+                                src="/admain_war_exploded/assets/images/users/sanjiu.JPG" alt="user"
+                                class="profile-pic m-r-5"/>慕随心</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    
+    
+    
+    
+    <!-- Left Sidebar - style you can find in sidebar.scss  -->
+    
+    <aside class="left-sidebar">
+        
+        <div class="scroll-sidebar">
+            
+            <nav class="sidebar-nav">
+                <ul id="sidebarnav">
+                    <li>
+                        <a href="/admain_war_exploded/admain/admaininfo" class="waves-effect"><i class="fa fa-user m-r-10"
+                                                                          aria-hidden="true"></i>管理员</a>
+                    </li>
+                    <li>
+                        <a href="/admain_war_exploded/admain/table-basic" class="waves-effect"><i class="fa fa-table m-r-10"
+                                                                           aria-hidden="true"></i>招聘表信息</a>
+                    </li>
+                    <li>
+                        <a href="/admain_war_exploded/admain/news" class="waves-effect"><i class="fa fa-columns m-r-10"
+                                                                    aria-hidden="true"></i>新闻编辑器</a>
+                    </li>
+                    <li>
+                        <a href="/admain_war_exploded/admain/news-table" class="waves-effect"><i class="fa fa-columns m-r-10"
+                                                                           aria-hidden="true"></i>新闻列表</a>
+                    </li>
+                </ul>
+                <div class="text-center m-t-30">
+                    <a href="http://www.musuixin.top/" class="btn btn-danger">返回主页</a>
+                </div>
+            </nav>
+            
+        </div>
+        
+    </aside>
+    
+    <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+    
+    
+    
+    
+    <div class="page-wrapper">
+        
+        
+        
+        <div class="container-fluid">
+            
+            
+            
+            <div class="row page-titles">
+                <div class="col-md-6 col-8 align-self-center">
+                    <h3 class="text-themecolor m-b-0 m-t-0">表格</h3>
+                </div>
+                <div class="col-md-6 col-4 align-self-center">
+                    <button type="button" class="btn btn-success hidden-sm-down pull-right" data-toggle="modal"
+                            data-target="#myModal">
+                        添加信息
+                    </button>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+            
+            <div class="row">
+                
+                <div class="col-sm-12">
+                    <div class="card">
+                        <script id="text" type="text/x-handlebars-template">
+                            <h4 class="card-title">招聘者信息</h4>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>名字</th>
+                                        <th>教育程度</th>
+                                        <th>城市</th>
+                                        <th>理想职位</th>
+                                        <th>技能</th>
+                                        <th>工作经验</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {{#each info}}
+                                    <tr>
+                                        <td class="immutable id">{{id}}</td>
+                                        <td class="immutable">{{name}}</td>
+                                        <td> {{education}}</td>
+                                        <td> {{expectantCity}}</td>
+                                        <td>{{idealPost}}</td>
+                                        <td> {{ skill}}</td>
+                                        <td> {{workExperience}}</td>
+                                        <td>
+                                            <button class="btn btn-primary" name="modify">修改</button>
+                                            <button class="btn btn-danger mx-2" name="remove">删除</button>
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </script>
+                        <div class="card-block" id="shuju">
+
+
+                        </div>
+                        <div class="mx-3">
+                            <ul class="pagination" id="pagination1"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+        </div>
+        
+        
+        
+        
+        
+        
+        <footer class="footer text-center">
+            © 2019 慕随心管理系统后台
+        </footer>
+        
+        
+        
+    </div>
+    
+    
+    
+</div>
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            
+            <div class="modal-header">
+                <h4 class="modal-title">添加信息</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            
+            <div class="modal-body">
+                <form action="" id="addForm">
+                    <div class="form-group">
+                        <label for="">名字</label>
+                        <input type="text" name="Name" id="" class="form-control" placeholder=""
+                               aria-describedby="helpId" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="sel1">教育程度</label>
+                        <select class="form-control" id="sel1" name="Education">
+                            <option>本科</option>
+                            <option>大专</option>
+
+                            <option>硕士</option>
+                            <option>博士</option>
+                            <option>其他</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="">技能</label>
+                        <input type="text" name="Skill" id="" class="form-control" placeholder=""
+                               aria-describedby="helpId" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="">理想职位</label>
+                        <input type="text" name="IdealPost" id="" class="form-control" placeholder=""
+                               aria-describedby="helpId" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="">工作经验</label>
+                        <input type="text" name="WorkExperience" id="" class="form-control" placeholder=""
+                               aria-describedby="helpId" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="">城市</label>
+                        <input type="text" name="ExpectantCity" id="" class="form-control" placeholder=""
+                               aria-describedby="helpId" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">添加</button>
+                </form>
+            </div>
+
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<script src="/admain_war_exploded/assets/plugins/jquery/jquery.min.js"></script>
+
+<script src="/admain_war_exploded/assets/plugins/bootstrap/js/tether.min.js"></script>
+<script src="/admain_war_exploded/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="/admain_war_exploded/js/jquery.slimscroll.js"></script>
+<script src="/admain_war_exploded/js/waves.js"></script>
+
+<script src="/admain_war_exploded/js/sidebarmenu.js"></script>
+
+<script src="/admain_war_exploded/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+
+<script src="/admain_war_exploded/js/custom.min.js"></script>
+
+
+
+<script src="/admain_war_exploded/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+
+<script src="https://cdn.bootcss.com/handlebars.js/4.0.0/handlebars.js"></script>
+<script src="/admain_war_exploded/js/jq-paginator.js"></script>
+<script>
+    $(function () {
+
+        var totalPages;
+        $.get({
+            url: "/admain_war_exploded/getPage",
+            success: function (data) {
+                totalPages = data["totalPages"];
+                $('#pagination1').jqPaginator({
+                    totalPages: totalPages,
+                    currentPage: 1,
+                    onPageChange: function (num, type) {
+                        $.get({
+                            url: "/admain_war_exploded/info",
+                            data: {"num": num},
+                            success: function (data) {
+                                window.scrollTo(0, 0);
+                                $("#shuju").empty();
+                                var theTemplateScript = $("#text").html();
+                                // 编译模板
+                                var theTemplate = Handlebars.compile(theTemplateScript);
+                                // 把数据传送到模板
+                                var theCompiledHtml = theTemplate(data);
+                                // 更新到模板
+                                $('#shuju').html(theCompiledHtml);
+                                $("button[name='remove']").click(function () {
+                                    if (window.confirm("您确定要删除数据吗?")) {
+                                        var id = $(this).parent().siblings(".id").text()
+                                        $.ajax({
+                                            type: "DELETE",
+                                            url: "/admain_war_exploded/info/" + id
+                                        });
+
+                                        $(this).parent().parent().remove();
+                                    }
+                                });
+                                $("button[name='modify']").click(function () {
+                                    var arr = new Array()
+                                    $(this).text("完成");
+                                    $(this).parent().siblings("td").not(".immutable").each(function ()//找同类元素td
+                                    {
+                                        var is_text = $(this).find("input:text");//判断单元格下是否含有文本框
+                                        if (!is_text.length) {
+                                            $(this).html("<input class=\"form-control\" size='11' type='text' value='" + $(this).text() + "' />");
+                                        } else {
+                                            $(this).html(is_text.val());
+                                            arr.push(is_text.val());
+                                            $("button[name='modify']").text("修改");
+                                        }
+                                    });
+                                    for (a in arr) {
+                                        if (arr[a] === "") {
+                                            alert("不允许为空");
+                                            return;
+                                        }
+                                    }
+                                    if (arr.length !== 0) {
+                                        $(this).parent().siblings(".immutable").each(function ()//找同类元素td
+                                        {
+                                            arr.push($(this).text());
+                                        });
+                                        $.ajax({
+                                            type: "PUT",
+                                            url: "/admain_war_exploded/info",
+                                            contentType: "application/json",
+                                            data: JSON.stringify({
+                                                education: arr[0],
+                                                expectantCity: arr[1],
+                                                idealPost: arr[2],
+                                                skill: arr[3],
+                                                workExperience: arr[4],
+                                                id: arr[5],
+                                                name: arr[6]
+                                            })
+                                        });
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+        });
+        $("#addForm").submit(function () {
+            let serialize = $("#addForm").serialize();
+            $.post({
+                dataType: "text",
+                url: "/admain_war_exploded/info",
+                data: serialize,
+                error: function () {
+                    alert("添加失败！请联系管理员");
+                }
+            });
+        });
+    });
+
+
+</script>
+</body>
+
+</html>

@@ -27,7 +27,7 @@
                                 success: function (result) {
                                     window.scrollTo(0,0);
                                     $("#text").empty();
-                                    for (var i = result.length - 1; i >= 0; i--) {
+                                    for (var i = 0; i <result.length; i++) {
                                         $("#text").append("<div class=\"bg-primary text-white container  my-3\">" +
                                             "<p>昵称：" + result[i].uname + "</p>" +
                                             "<p>建议：" + result[i].text + "</p>" +

@@ -13,7 +13,7 @@ import java.util.List;
 
 @Repository
 public interface FaTieMapper {
-    @Select("select * from fatie")
+    @Select("select * from fatie order by time desc")
     List<ShuJuPOJO> getData();
     @Insert("insert into demo.fatie values (#{uname} ,#{text} ,#{time} )")
     void insterData(ShuJuPOJO shuJu);

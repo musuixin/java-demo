@@ -11,10 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class FaTieController {
@@ -54,6 +51,7 @@ public class FaTieController {
     public HashMap<String, Integer> getPage() {
         PageHelper.startPage(1, 10);
         List<ShuJuPOJO> infoPolos = faTieMapper.getData();
+        infoPolos.sort(Comparator.comparing(ShuJuPOJO::getTime).reversed());
         PageInfo pageInfo = new PageInfo(infoPolos);
         HashMap<String, Integer> map = new HashMap<>();
         map.put("totalPages", pageInfo.getPages());

@@ -85,13 +85,23 @@ $(document).ready(function () {
     });
 });
 function yz() {
+    var upwd = $('input[name="upwd"]');
+    var opwd = $('input[name="opwd"]');
+    var label = $('label[for="inputConfirmPassword"]');
     var yz;
-    var code1 = $('input[name="code"]');
     var code = $('label[for="inputCode"]');
-    var email = $('input[name="uname"]');
-    var iu = $('input[name="email"]');
     var li = $('label[for="inputUserame"]');
     var lableemail = $('label[for="inputEmail"]');
+    if (trim(upwd.val()) !== trim(opwd.val())) {
+        label.text("两次密码不一致");
+        label.attr("class", "text-danger");
+        return false;
+    }
+    if (trim(opwd.val()).length <6) {
+        label.text("密码长度小于六个字符");
+        label.attr("class", "text-danger");
+        return false;
+    }
     $.ajax({
         url: "/SignlnRegister2_war_exploded/UnameCode",
         type: "post",
@@ -133,20 +143,30 @@ function yz() {
     return true;
 }
 function yanZheng() {
-    var upwd = $('input[name="upwd"]');
-    var opwd = $('input[name="opwd"]');
+    // var upwd = $('input[name="upwd"]');
+    // var opwd = $('input[name="opwd"]');
     var label = $('label[for="inputConfirmPassword"]');
-    if (trim(upwd.val()) == trim(opwd.val())) {
-        $("#注册").attr("disabled", false);
-        label.text("确认密码");
-        label.attr("class", "");
-        return true;
-    } else {
-        $("#注册").attr("disabled", true);
-        label.text("两次密码不一致");
-        label.attr("class", "text-danger");
-        return false;
-    }
+    label.text("确认密码");
+    label.attr("class", "");
+
+    // if (trim(upwd.val()) === trim(opwd.val())&&trim(opwd.val()).length>=6) {
+    //     $("#注册").attr("disabled", false);
+    //     label.text("确认密码");
+    //     label.attr("class", "");
+    //     return true;
+    // }
+    // else if (trim(opwd.val()).length <= 6) {
+    //     $("#注册").attr("disabled", true);
+    //     label.text("密码长度小于六个字符");
+    //     label.attr("class", "text-danger");
+    //     return false;
+    // }
+    // else {
+    //     $("#注册").attr("disabled", true);
+    //     label.text("两次密码不一致");
+    //     label.attr("class", "text-danger");
+    //     return false;
+    // }
 }
 
 var wait = 60;
