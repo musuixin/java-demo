@@ -25,7 +25,6 @@ public class SendmailUtil extends Thread {
         this.toEmail = toEmail;
         this.code = code;
     }
-
     @Override
     public void run() {
         Properties properties = new Properties();

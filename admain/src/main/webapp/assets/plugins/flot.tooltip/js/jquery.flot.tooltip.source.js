@@ -5,7 +5,7 @@
             show: false,
             cssClass: "flotTip",
             content: "%s | X: %x | Y: %y",
-            // allowed templates are:
+            // allowed template are:
             // %s -> series label,
             // %c -> series color,
             // %lx -> x axis label (requires flot-axislabels plugin https://github.com/markrcote/flot-axislabels),

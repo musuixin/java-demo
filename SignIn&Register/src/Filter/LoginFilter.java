@@ -22,16 +22,16 @@ public class LoginFilter implements Filter {
 
     }
 
-@Override
-public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
+    @Override
+    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
         String name = (String) request.getSession().getAttribute("uname");
         if (name == null) {
-        request.setAttribute("str", "ÇëÏÈµÇÂ½");
-        request.getRequestDispatcher("/SignIn.html").forward(request, response);
+            request.setAttribute("str", "ÇëÏÈµÇÂ½");
+            request.getRequestDispatcher("/SignIn.html").forward(request, response);
         } else {
-        chain.doFilter(req, resp);
+            chain.doFilter(req, resp);
         }
-        }
-        }
+    }
+}

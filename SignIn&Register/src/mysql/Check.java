@@ -8,13 +8,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 /**
  * @date 2018.12.24
  * @author musuixin1
  */
 public class Check {
-
     public static boolean login(String name,String pwd){
          int[] ints=new int[10];
         Connection conn = ConUtil.openConection();
